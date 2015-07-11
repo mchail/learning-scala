@@ -16,3 +16,9 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 
+# custom
+
+.DS_Store
+20150710/all.txt
+20150710/smaller.txt
+
