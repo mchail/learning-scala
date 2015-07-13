@@ -1,12 +1,12 @@
-// scalac *.scala && scala -J-Xmx2g -cp . ClicksByUrl
+// scalac *.scala && scala -J-Xmx2g -cp . ActionsByUrl
 
 import parser.Parser
 
-object ClicksByUrl extends App {
+object ActionsByUrl extends App {
 
 	val data = new Parser dataAsList
 
-	def topByAction(recType: Int) : Map[String, Int] = {
+	def topByAction(recType: Int) : List[(String, Int)] = {
 		data.groupBy(_.url).
 		map{
 			kv => (
@@ -18,15 +18,15 @@ object ClicksByUrl extends App {
 			)
 		}.
 		toList.
-		sortBy(_._2).
+		sortBy(-_._2).
 		slice(0, 100)
 	}
 
 	println("top URLs by impressions")
-	println(frequencyByAction(1))
+	println(topByAction(1))
 	println("top URLs by clicks")
-	println(frequencyByAction(2))
+	println(topByAction(2))
 	println("top URLs by conversions")
-	println(frequencyByAction(3))
+	println(topByAction(3))
 
 }
