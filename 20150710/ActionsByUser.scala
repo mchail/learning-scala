@@ -1,8 +1,8 @@
-// scalac *.scala && scala -J-Xmx2g -cp . HistogramByCount
+// scalac *.scala && scala -J-Xmx2g -cp . ActionsByUser
 
 import parser.Parser
 
-object HistogramByCount extends App {
+object ActionsByUser extends App {
 
 	val data = new Parser dataAsList
 

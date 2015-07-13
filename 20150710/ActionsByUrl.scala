@@ -16,11 +16,10 @@ object ClicksByUrl extends App {
 					map(_.count).
 					sum
 			)
-		}. // map each user to number of sites clicked on
-		values.
-		groupBy(x => x).map{kv => (kv._1, kv._2.size)}. // frequency of click counts
+		}.
 		toList.
-		sortBy(_._1)
+		sortBy(_._2).
+		slice(0, 100)
 	}
 
 	println("top URLs by impressions")
