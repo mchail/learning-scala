@@ -1,6 +1,8 @@
 object EfronDice extends App {
 
-	val max = 9
+	val maxRating = 4
+	val gridSize = 3
+	val winningScore = (gridSize * gridSize) / 2
 
 	def comparePlayers(p1: List[Int], p2: List[Int]) = {
 		p1.flatMap{x =>
@@ -11,15 +13,15 @@ object EfronDice extends App {
 	}
 
 	val solutions = for {
-		a <- (1 to max)
-		b <- (1 to max)
-		c <- (1 to max)
-		d <- (1 to max)
-		e <- (1 to max)
-		f <- (1 to max)
-		g <- (1 to max)
-		h <- (1 to max)
-		i <- (1 to max)
+		a <- (1 to maxRating)
+		b <- (1 to maxRating)
+		c <- (1 to maxRating)
+		d <- (1 to maxRating)
+		e <- (1 to maxRating)
+		f <- (1 to maxRating)
+		g <- (1 to maxRating)
+		h <- (1 to maxRating)
+		i <- (1 to maxRating)
 
 		val p1 = List(a, b, c)
 		val p2 = List(d, e, f)
@@ -31,8 +33,8 @@ object EfronDice extends App {
 
 		if (score1 == score2)
 		if (score2 == score3)
-		if (score1 > max / 2)
-	} yield ((a, b, c), (d, e, f), (g, h, i))
+		if (score1 >= winningScore)
+	} yield (p1, p2, p3)
 
 	println(solutions.toList.size)
 
