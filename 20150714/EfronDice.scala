@@ -4,6 +4,7 @@ object EfronDice extends App {
 	val gridSize = 3
 	val winningScore = (gridSize * gridSize) / 2
 
+	// returns count of comparisons that p1 "wins" over p2
 	def comparePlayers(p1: List[Int], p2: List[Int]) = {
 		p1.flatMap{x =>
 			p2.map{y =>
