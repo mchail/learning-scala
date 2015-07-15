@@ -1,6 +1,6 @@
 object EfronDice extends App {
 
-	val maxRating = 4
+	val maxRating = 10
 	val gridSize = 3
 	val winningScore = (gridSize * gridSize) / 2
 
