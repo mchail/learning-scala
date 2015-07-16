@@ -5,12 +5,10 @@ object EfronDice extends App {
 	val winningScore = (gridSize * gridSize) / 2
 
 	// returns count of comparisons that p1 "wins" over p2
-	def comparePlayers(p1: List[Int], p2: List[Int]) = {
-		p1.flatMap{x =>
-			p2.map{y =>
-				(x, y)
-			}
-		}.count{xy => xy._1 > xy._2}
+	def comparePlayers(p1: (Int, Int, Int), p2: (Int, Int, Int)) = {
+		val (a, b, c) = p1
+		val (d, e, f) = p2
+		List((a, d), (a, e), (a, f), (b, d), (b, e), (b, f), (c, d), (c, e), (c, f)).count{xy => xy._1 > xy._2}
 	}
 
 	val solutions = for {
@@ -24,17 +22,16 @@ object EfronDice extends App {
 		h <- (1 to maxRating)
 		i <- (1 to maxRating)
 
-		val p1 = List(a, b, c)
-		val p2 = List(d, e, f)
-		val p3 = List(g, h, i)
+		val p1 = (a, b, c)
+		val p2 = (d, e, f)
+		val p3 = (g, h, i)
 
 		val score1 = comparePlayers(p1, p2)
-		val score2 = comparePlayers(p2, p3)
-		val score3 = comparePlayers(p3, p1)
-
-		if (score1 == score2)
-		if (score2 == score3)
 		if (score1 >= winningScore)
+		val score2 = comparePlayers(p2, p3)
+		if (score1 == score2)
+		val score3 = comparePlayers(p3, p1)
+		if (score2 == score3)
 	} yield (p1, p2, p3)
 
 	println(solutions.toList.size)
