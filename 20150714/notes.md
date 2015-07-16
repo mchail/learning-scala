@@ -170,3 +170,11 @@ Basics:
 3. nothing is ordered
 
 # Homework: read a dmp access log in spark
+
+-------------------
+
+Optimizations
+- hardcode integer comparisons
+- check for win between two players as early as possible - before declaring additional generators
+- in minimum solution, sum of scores for player is 12. no set of scores with sum below 12 will lead to solution.
+- compare each point individuall
