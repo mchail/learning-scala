@@ -6,43 +6,40 @@ object EfronDice extends App {
 	val minSum = 12
 
 	// returns count of comparisons that p1 "wins" over p2
-	def comparePlayers(p1: (Int, Int, Int), p2: (Int, Int, Int)) = {
-		// val a = p1(0)
-		// val b = p1(1)
-		// val c = p1(2)
-		// val d = p2(0)
-		// val e = p2(1)
-		// val f = p2(2)
-		val (a, b, c) = p1
-		val (d, e, f) = p2
-		List((a, d), (a, e), (a, f), (b, d), (b, e), (b, f), (c, d), (c, e), (c, f)).count{xy => xy._1 > xy._2}
+	def compare(a: Int, b: Int, c: Int, d: Int) = {
+		List(d > a, d > b, d > c).count{x => x}
 	}
 
 	val solutions = for {
 		a <- (1 to maxRating)
 		b <- (1 to maxRating)
 		c <- (math.max(minSum - (a + b), 1) to maxRating)
-		val p1 = (a, b, c)
 
 		d <- (1 to maxRating)
+		val p2p1s1 = compare(a, b, c, d)
 		e <- (1 to maxRating)
+		val p2p1s2 = compare(a, b, c, e)
+		if (p2p1s1 + p2p1s2 >= 2)
 		f <- (math.max(minSum - (d + e), 1) to maxRating)
-		val p2 = (d, e, f)
+		val p2p1s3 = compare(a, b, c, f)
 
-		val score1 = comparePlayers(p1, p2)
-		if (score1 >= winningScore)
+		val p2p1 = p2p1s1 + p2p1s2 + p2p1s3
+		if (p2p1 >= winningScore)
 
 		g <- (1 to maxRating)
+		val p3p2s1 = compare(d, e, f, g)
 		h <- (1 to maxRating)
+		val p3p2s2 = compare(d, e, f, h)
+		if (p3p2s1 + p3p2s2 >= 2)
 		i <- (math.max(minSum - (g + h), 1) to maxRating)
-		val p3 = (g, h, i)
+		val p3p2s3 = compare(d, e, f, i)
 
-		val score2 = comparePlayers(p2, p3)
-		if (score1 == score2)
+		val p3p2 = p3p2s1 + p3p2s2 + p3p2s3
+		if (p3p2 == p2p1)
 
-		val score3 = comparePlayers(p3, p1)
-		if (score2 == score3)
-	} yield (p1, p2, p3)
+		val p1p3 = compare(g, h, i, a) + compare(g, h, i, b) + compare(g, h, i, c)
+		if (p1p3 == p2p1)
+	} yield (a, b, c, d, e, f, g, h, i)
 
 	println(solutions.toList.size)
 

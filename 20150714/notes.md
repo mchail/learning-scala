@@ -174,7 +174,10 @@ Basics:
 -------------------
 
 Optimizations
-- hardcode integer comparisons
-- check for win between two players as early as possible - before declaring additional generators
+- hardcode integer comparisons.
+- check for win between two players as early as possible - before declaring additional generators.
 - in minimum solution, sum of scores for player is 12. no set of scores with sum below 12 will lead to solution.
-- compare each point individuall
+- compare each subsequent rating individually (vs two sets of three numbers all at once).
+	- need at least two wins by the second number chosen.
+- using Tuples for player data structure seem to be much faster than using Lists.
+- can't have a player with two 1s or two 10s. (not implemented)
