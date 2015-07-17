@@ -1,9 +1,8 @@
 var sols = for {
-	a <- (1 to 10)
-	// (1 to 10).forEach{
-	// 	_ <- 1 to 10
-	// }
+	a <- (1 to 4)
+	b <- (a to 4)
+	c <- (b to 4)
 } yield {
-	
+	List(a, b, c).sorted
 }
-println(sols)
+println(sols.distinct.size)
