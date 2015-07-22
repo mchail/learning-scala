@@ -1,4 +1,4 @@
-// object MultiVariableGradient extends App {
+object TotalGradient extends App {
 
 	val x = (-10.0 to 10.0 by 0.5).toList
 	val y = x.map{a => 2.0 * a + 3}
@@ -34,4 +34,4 @@
 
 	println(sol)
 
-// }
+}
