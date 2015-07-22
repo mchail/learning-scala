@@ -241,3 +241,7 @@ k-means++ was discovered in 2007. available in commons-math.
 convergence means the centroids don't change or change very little.
 
 for multiple dimensions, the distance changes and the centroid calculation changes. distance in n-dimensions is easy. compute the centroid by averaging all the values in each dimension separately.
+
+machine learning + computer vision = cognitive vision
+
+k-means clustering to figure out object boundaries, then something else to figure out what the object is.
